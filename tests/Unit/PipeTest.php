@@ -14,7 +14,9 @@ class PipeTest extends TestCase
     {
         $this->assertSame(
             'STRING',
-            (new Item('string'))->pipe('strtoupper')->get()
+            (new Item('string'))
+                ->pipe('strtoupper')
+                ->get()
         );
     }
 
@@ -25,9 +27,11 @@ class PipeTest extends TestCase
     {
         $this->assertSame(
             'prefixed-string',
-            (new Item('string'))->pipe(function (string $value) {
-                return 'prefixed-' . $value;
-            })->get()
+            (new Item('string'))
+                ->pipe(function (string $value) {
+                    return 'prefixed-' . $value;
+                })
+                ->get()
         );
     }
 
@@ -37,8 +41,47 @@ class PipeTest extends TestCase
     public function it can transform a value while accepting pipe parameters() : void
     {
         $this->assertSame(
-            'value',
-            (new Item(['key' => 'value']))->pipe('array_get', 'key')->get()
+            ['KEY' => 'value'],
+            (new Item(['key' => 'value']))
+                ->pipe('array_change_key_case', CASE_UPPER)
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it returns an item object when get has not been called yet() : void
+    {
+        $this->assertInstanceOf(
+            Item::class,
+            (new Item('string'))->pipe('strtoupper')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it uses the default identifier to replace the value() : void
+    {
+        $this->assertSame(
+            'key',
+            (new Item(['key' => 'value']))
+                ->pipe('array_search', 'value', '$$')
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it uses the identifier to replace the value() : void
+    {
+        $this->assertSame(
+            'The meaning of everything is to make everything be more.',
+            (new ExtendedItem('The meaning of life is to make life be more.'))
+                ->pipe('str_replace', 'life', 'everything', '42')
+                ->get()
         );
     }
 
@@ -51,27 +94,9 @@ class PipeTest extends TestCase
             'blog',
             (new Item('https://blog.sebastiaanluca.com'))
                 ->pipe('parse_url')
-                ->pipe('array_get', 'host')
+                ->pipe('end')
                 ->pipe('explode', '.', '$$')
-                ->pipe('array_get', 0)
-                ->get()
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function it returns an item object when get has not been called yet() : void
-    {
-        $this->assertInstanceOf(Item::class, (new Item('string'))->pipe('strtoupper'));
-    }
-
-    public function test it uses the identifier to replace the actual value() : void
-    {
-        $this->assertSame(
-            'The meaning of everything is to make everything be more.',
-            (new ExtendedItem('The meaning of life is to make life be more.'))
-                ->pipe('str_replace', 'life', 'everything', '42')
+                ->pipe('reset')
                 ->get()
         );
     }
