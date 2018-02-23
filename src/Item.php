@@ -30,6 +30,8 @@ class Item
     }
 
     /**
+     * Perform an operation on the current value.
+     *
      * @param \Closure|string $callback
      * @param array ...$arguments
      *
