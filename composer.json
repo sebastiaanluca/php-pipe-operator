@@ -1,0 +1,43 @@
+{
+    "name": "sebastiaanluca/php-pipe-operator",
+    "type": "library",
+    "description": "A (hopefully) temporary solution to implement the pipe operator in PHP.",
+    "keywords": [
+        "php",
+        "pipe",
+        "operator",
+        "take"
+    ],
+    "homepage": "https://github.com/sebastiaanluca/php-pipe-operator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastiaan Luca",
+            "email": "hello@sebastiaanluca.com",
+            "homepage": "https://www.sebastiaanluca.com",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "SebastiaanLuca\\PipeOperator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SebastiaanLuca\\PipeOperator\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
