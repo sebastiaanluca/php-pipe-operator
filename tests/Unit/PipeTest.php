@@ -1,8 +1,8 @@
 <?php
 
-namespace SebastiaanLuca\Helpers\Tests\Unit\Classes;
+namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
-use SebastiaanLuca\Helpers\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use SebastiaanLuca\PipeOperator\Item;
 
 class PipeTest extends TestCase
