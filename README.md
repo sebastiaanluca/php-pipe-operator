@@ -45,14 +45,52 @@ Via Composer:
 composer require sebastiaanluca/php-pipe-operator
 ```
 
+If you want to use the global function helper, copy the code below to your project or install `sebastiaanluca/php-helpers`:
+
+```
+if (! function_exists('take')) {
+    /**
+     * Create a new piped item from a given value.
+     *
+     * @param mixed $value
+     *
+     * @return \SebastiaanLuca\PipeOperator\Item
+     */
+    function take($value) : Item
+    {
+        return new \SebastiaanLuca\PipeOperator\Item($value);
+    }
+}
+```
+
+or
+
+```bash
+composer require sebastiaanluca/php-helpers
+```
+
 ### How to use
 
 ```php
-take('https://blog.sebastiaanluca.com/')
-    ->pipe('parse_url', PHP_URL_HOST)
+(new Item('https://blog.sebastiaanluca.com'))
+    ->pipe('parse_url')
+    ->pipe('end')
     ->pipe('explode', '.', '$$')
     ->pipe('reset')
-    ->get();
+    ->get()
+
+// "blog"
+```
+
+Similar using the shorthand helper:
+
+```php
+take('https://blog.sebastiaanluca.com')
+    ->pipe('parse_url')
+    ->pipe('end')
+    ->pipe('explode', '.', '$$')
+    ->pipe('reset')
+    ->get()
 
 // "blog"
 ```
