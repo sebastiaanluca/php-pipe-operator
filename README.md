@@ -17,7 +17,7 @@ A (hopefully) temporary solution to implement the pipe operator in PHP.
 - [Requirements](#requirements)
 - [How to install](#how-to-install)
 - [What does it solve?](#what-does-it-solve)
-    - [A simple example](a-simple-example)
+    - [A simple example](#a-simple-example)
     - [Another way of writing](#another-way-of-writing)
     - [More examples of the issue at hand](#more-examples-of-the-issue-at-hand)
 - [How to use](#how-to-use)
