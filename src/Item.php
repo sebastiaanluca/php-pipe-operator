@@ -44,7 +44,7 @@ class Item
     /**
      * Perform an operation on the current value.
      *
-     * @param \Closure|string $callback
+     * @param callable|string $callback
      * @param array ...$arguments
      *
      * @return \SebastiaanLuca\PipeOperator\Item $this

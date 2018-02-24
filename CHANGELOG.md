@@ -14,3 +14,4 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Allow using direct method calls instead of using pipe operator
 - Add shorthand take method
 - Allow setting custom pipe operator
+- Add test to use class methods as pipe processors
