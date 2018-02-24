@@ -5,7 +5,7 @@ namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 use PHPUnit\Framework\TestCase;
 use SebastiaanLuca\PipeOperator\Item;
 
-class PipeObjectTest extends TestCase
+class ObjectTest extends TestCase
 {
     /**
      * @test
