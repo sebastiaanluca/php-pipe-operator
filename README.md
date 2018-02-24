@@ -1,6 +1,5 @@
 <p align="center">
 <h1>PHP Pipe Operator</h1>
-</p>
 
 <p align="center">
 <a href="https://packagist.org/packages/sebastiaanluca/php-pipe-operator"><img src="https://poser.pugx.org/sebastiaanluca/php-pipe-operator/version" alt="Latest stable release"></img></a>
@@ -18,7 +17,7 @@
 
 # PHP Pipe Operator
 
-**A (hopefully) temporary solution to implement the pipe operator in PHP.**
+A (hopefully) temporary solution to implement the pipe operator in PHP.
 
 ## Table of contents
 
