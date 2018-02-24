@@ -62,10 +62,10 @@ Similar using the shorthand helper:
 
 ```php
 take('https://blog.sebastiaanluca.com')
-    ->pipe('parse_url')
-    ->pipe('end')
-    ->pipe('explode', '.', '$$')
-    ->pipe('reset')
+    ->parse_url()
+    ->end()
+    ->explode('.', '$$')
+    ->reset()
     ->get()
 
 // "blog"
