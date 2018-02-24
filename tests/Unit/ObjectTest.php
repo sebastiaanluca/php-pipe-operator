@@ -53,8 +53,7 @@ class ObjectTest extends TestCase
         $this->assertSame(
             'blog',
             take('https://blog.sebastiaanluca.com')
-                ->parse_url()
-                ->end()
+                ->parse_url(PHP_URL_HOST)
                 ->explode('.', '$$')
                 ->reset()
                 ->get()
