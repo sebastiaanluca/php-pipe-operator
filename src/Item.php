@@ -30,6 +30,17 @@ class Item
     }
 
     /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        return $this->pipe($name, ...$arguments);
+    }
+
+    /**
      * Perform an operation on the current value.
      *
      * @param \Closure|string $callback

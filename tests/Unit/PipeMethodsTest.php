@@ -23,6 +23,19 @@ class PipeMethodsTest extends TestCase
     /**
      * @test
      */
+    public function it can transform a value using a callable string method using the method directly() : void
+    {
+        $this->assertSame(
+            'STRING',
+            (new Item('string'))
+                ->strtoupper()
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
     public function it can transform a value using a closure() : void
     {
         $this->assertSame(
@@ -44,6 +57,19 @@ class PipeMethodsTest extends TestCase
             ['KEY' => 'value'],
             (new Item(['key' => 'value']))
                 ->pipe('array_change_key_case', CASE_UPPER)
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it can transform a value while accepting pipe parameters using the method directly() : void
+    {
+        $this->assertSame(
+            ['KEY' => 'value'],
+            (new Item(['key' => 'value']))
+                ->array_change_key_case(CASE_UPPER)
                 ->get()
         );
     }
