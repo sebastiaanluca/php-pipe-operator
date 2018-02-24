@@ -17,16 +17,17 @@ class Item
      *
      * @var string
      */
-    protected $identifier = '$$';
+    protected $identifier;
 
     /**
-     * Item constructor.
-     *
-     * @param mixed $value
+     * @param mixed $value The value you want to process.
+     * @param string $identifier The identifier to replace the value with in method calls that
+     *     don't take the value as first parameter.
      */
-    public function __construct($value)
+    public function __construct($value, $identifier = '$$')
     {
         $this->value = $value;
+        $this->identifier = $identifier;
     }
 
     /**
