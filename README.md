@@ -16,7 +16,17 @@ A (hopefully) temporary solution to implement the pipe operator in PHP.
 
 - [Requirements](#requirements)
 - [How to install](#how-to-install)
+- [What does it solve?](#what-does-it-solve)
+    - [A simple example](a-simple-example)
+    - [Another way of writing](#another-way-of-writing)
+    - [More examples of the issue at hand](#more-examples-of-the-issue-at-hand)
 - [How to use](#how-to-use)
+    - [The basics](#the-basics)
+    - [Using closures](#using-closures)
+    - [Using public class methods](#using-public-class-methods)
+    - [Using private class methods](#using-private-class-methods)
+    - [Changing the replacement identifier](#changing-the-replacement-identifier)
+- [Notes](#notes)
 - [License](#license)
 - [Change log](#change-log)
 - [Testing](#testing)
@@ -37,18 +47,179 @@ Via Composer:
 composer require sebastiaanluca/php-pipe-operator
 ```
 
-### How to use
+## What does it solve?
+
+This package is based on the [pipe operator RFC by Sara Golemon (2016)](https://wiki.php.net/rfc/pipe-operator), who explains the problem as:
+
+>A common PHP OOP pattern is the use of method chaining, or what is also known as “Fluent Expressions”. […] This works well enough for OOP classes which were designed for fluent calling, however it is impossible, or at least unnecessarily arduous, to adapt non-fluent classes to this usage style, harder still for functional interfaces.
+
+Coming across the proposal, I also [blogged about it](https://blog.sebastiaanluca.com/enabling-php-method-chaining-with-a-makeshift-pipe-operator).
+
+### A simple example
+
+Say you want to get the subdomain from a URL, you end up with something like this:
 
 ```php
-take('https://blog.sebastiaanluca.com')
+$subdomain = 'https://blog.sebastiaanluca.com/';
+$subdomain = parse_url($subdomain, PHP_URL_HOST);
+$subdomain = explode('.', $subdomain);
+$subdomain = reset($subdomain);
+
+// "blog"
+```
+
+This works, of course, but it's quite verbose and repetitive.
+
+### Another way of writing
+
+Same result, different style:
+
+```php
+$subdomain = explode('.', parse_url('https://blog.sebastiaanluca.com/', PHP_URL_HOST))[0];
+
+// "blog"
+```
+
+This might be the worst of all solutions, as it requires you to start reading from the center, work your way towards the outer methods, and keep switching back and forth. The more methods and variants, the more difficult to get a sense of what's going on.
+
+### More examples of the issue at hand
+
+See [Sara's RFC](https://wiki.php.net/rfc/pipe-operator#introduction) for more complex and real-world examples.
+
+## How to use
+
+### The basics
+
+The basic gist of the package is that it takes a value and performs one or more actions on it. A simple example:
+
+```php
+take('hello')->strtoupper()->get();
+
+// "HELLO"
+```
+
+Of course that's not very useful since you could've just used `strtoupper('hello')` and be done with it, but the goal is to make multi-method calls on a value easier to read and write:
+
+```php
+$subdomain = take('https://blog.sebastiaanluca.com')
     ->parse_url()
     ->end()
     ->explode('.', '$$')
     ->reset()
-    ->get()
+    ->get();
 
 // "blog"
 ```
+
+Note that in comparison to the original RFC, there's no need to pass the initial value to methods that receive the value as first parameter and have no other required parameters. The previous value is always passed as first parameter. In effect, both of the following examples will work:
+
+```php
+take('hello')->strtoupper()->get();
+
+// "HELLO"
+
+take('hello')->strtoupper('$$')->get();
+
+// "HELLO"
+```
+
+In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the default replacement identifier (`$$`). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
+
+```php
+take(['key' => 'value'])
+    ->array_search('value', '$$')
+    ->get();
+
+// "key"
+```
+
+### Using closures
+
+Sometimes standard methods don't cut it and you need to perform a custom operation on a value in the process. You can do so using a closure:
+
+```php
+take('string')
+    ->pipe(function (string $value) {
+        return 'prefixed-' . $value;
+    })
+    ->get();
+    
+// "prefixed-string"    
+```
+
+### Using public class methods
+
+The same is possible using a public class method:
+
+```php
+class MyClass
+{
+    public function __construct()
+    {
+        take('my string')
+            ->pipe([$this, 'uppercase'])
+            ->get();
+        
+        // "MY STRING"
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    public function uppercase(string $value) : string
+    {
+        return mb_strtoupper($value);
+    }
+}
+```
+
+### Using private class methods
+
+And even protected or private class methods:
+
+```php
+use Closure;
+
+class MyClass
+{
+    public function __construct()
+    {
+        take('HELLO')
+            ->pipe(Closure::fromCallable([$this, 'lowercase']))
+            ->get();
+        
+        // "hello"
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    private function lowercase(string $value) : string
+    {
+        return mb_strtolower($value);
+    }
+}
+```
+
+### Changing the replacement identifier
+
+If you don't like the default `$$` replacement identifier or it's needed as a literal value, you can change it to whatever you like by passing it as second parameter to the take method or `Item` class constructor:
+
+```php
+take(['key' => 'value'], '%')
+    ->pipe('array_search', 'value', '%')
+    ->get();
+    
+// "key"
+```
+
+## Notes
+
+While this packages makes a good attempt at bringing the pipe operator to PHP, it unfortunately does not offer autocompletion on chained methods. For that to work we need the real deal, so make some noise and get the people in charge to vote *for* Sara's RFC!
 
 ## License
 
