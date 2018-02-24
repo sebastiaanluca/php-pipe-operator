@@ -12,3 +12,4 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 - Added custom pipe operator
 - Allow using direct method calls instead of using pipe operator
+- Add shorthand take method

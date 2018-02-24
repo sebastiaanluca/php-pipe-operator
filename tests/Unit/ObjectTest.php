@@ -14,7 +14,7 @@ class ObjectTest extends TestCase
     {
         $this->assertInstanceOf(
             Item::class,
-            (new Item('string'))->pipe('strtoupper')
+            take('string')->pipe('strtoupper')
         );
     }
 
@@ -25,7 +25,7 @@ class ObjectTest extends TestCase
     {
         $this->assertInstanceOf(
             Item::class,
-            (new Item('string'))->strtoupper()
+            take('string')->strtoupper()
         );
     }
 
@@ -36,7 +36,7 @@ class ObjectTest extends TestCase
     {
         $this->assertSame(
             'blog',
-            (new Item('https://blog.sebastiaanluca.com'))
+            take('https://blog.sebastiaanluca.com')
                 ->pipe('parse_url')
                 ->pipe('end')
                 ->pipe('explode', '.', '$$')
@@ -52,7 +52,7 @@ class ObjectTest extends TestCase
     {
         $this->assertSame(
             'blog',
-            (new Item('https://blog.sebastiaanluca.com'))
+            take('https://blog.sebastiaanluca.com')
                 ->parse_url()
                 ->end()
                 ->explode('.', '$$')
@@ -68,7 +68,7 @@ class ObjectTest extends TestCase
     {
         $this->assertSame(
             'blog',
-            (new Item('https://blog.sebastiaanluca.com'))
+            take('https://blog.sebastiaanluca.com')
                 ->pipe('parse_url')
                 ->end()
                 ->explode('.', '$$')

@@ -5,7 +5,7 @@ namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 use PHPUnit\Framework\TestCase;
 use SebastiaanLuca\PipeOperator\Item;
 
-class PipeIdentifierTest extends TestCase
+class IdentifierTest extends TestCase
 {
     /**
      * @test
@@ -14,7 +14,7 @@ class PipeIdentifierTest extends TestCase
     {
         $this->assertSame(
             'key',
-            (new Item(['key' => 'value']))
+            take(['key' => 'value'])
                 ->pipe('array_search', 'value', '$$')
                 ->get()
         );
@@ -27,7 +27,7 @@ class PipeIdentifierTest extends TestCase
     {
         $this->assertSame(
             'key',
-            (new Item(['key' => 'value']))
+            take(['key' => 'value'])
                 ->array_search('value', '$$')
                 ->get()
         );

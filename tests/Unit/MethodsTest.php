@@ -3,7 +3,6 @@
 namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
 use PHPUnit\Framework\TestCase;
-use SebastiaanLuca\PipeOperator\Item;
 
 class MethodsTest extends TestCase
 {
@@ -14,7 +13,7 @@ class MethodsTest extends TestCase
     {
         $this->assertSame(
             'STRING',
-            (new Item('string'))
+            take('string')
                 ->pipe('strtoupper')
                 ->get()
         );
@@ -27,7 +26,7 @@ class MethodsTest extends TestCase
     {
         $this->assertSame(
             'STRING',
-            (new Item('string'))
+            take('string')
                 ->strtoupper()
                 ->get()
         );
@@ -40,7 +39,7 @@ class MethodsTest extends TestCase
     {
         $this->assertSame(
             'prefixed-string',
-            (new Item('string'))
+            take('string')
                 ->pipe(function (string $value) {
                     return 'prefixed-' . $value;
                 })
@@ -55,7 +54,7 @@ class MethodsTest extends TestCase
     {
         $this->assertSame(
             ['KEY' => 'value'],
-            (new Item(['key' => 'value']))
+            take(['key' => 'value'])
                 ->pipe('array_change_key_case', CASE_UPPER)
                 ->get()
         );
@@ -68,7 +67,7 @@ class MethodsTest extends TestCase
     {
         $this->assertSame(
             ['KEY' => 'value'],
-            (new Item(['key' => 'value']))
+            take(['key' => 'value'])
                 ->array_change_key_case(CASE_UPPER)
                 ->get()
         );
