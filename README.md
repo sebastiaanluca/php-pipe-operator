@@ -1,21 +1,14 @@
-<p align="center">
-<h1>PHP Pipe Operator</h1>
+# PHP Pipe Operator
 
-<p align="center">
 <a href="https://packagist.org/packages/sebastiaanluca/php-pipe-operator"><img src="https://poser.pugx.org/sebastiaanluca/php-pipe-operator/version" alt="Latest stable release"></img></a>
 <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Software license"></img></a>
 <a href="https://travis-ci.org/sebastiaanluca/php-pipe-operator"><img src="https://img.shields.io/travis/sebastiaanluca/php-pipe-operator/master.svg" alt="Build status"></img></a>
 <a href="https://packagist.org/packages/sebastiaanluca/php-pipe-operator"><img src="https://img.shields.io/packagist/dt/sebastiaanluca/php-pipe-operator.svg" alt="Total downloads"></img></a>
-</p>
 
-<p align="center">
 <a href="https://blog.sebastiaanluca.com"><img src="https://img.shields.io/badge/link-blog-lightgrey.svg" alt="Read my blog"></img></a>
 <a href="https://packagist.org/packages/sebastiaanluca"><img src="https://img.shields.io/badge/link-other_packages-lightgrey.svg" alt="View my other packages and projects"></img></a>
 <a href="https://twitter.com/sebastiaanluca"><img src="https://img.shields.io/twitter/follow/sebastiaanluca.svg?style=social" alt="Follow @sebastiaanluca on Twitter"></img></a>
 <a href="https://twitter.com/intent/tweet?text=Use%20PHP%27s%20pipe%20operator%20now!%20https%3A%2F%2Fgithub.com%2Fsebastiaanluca%2Fphp-pipe-operator%20via%20%40sebastiaanluca&source=webclient"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Share this package on Twitter"></img></a>
-</p>
-
-# PHP Pipe Operator
 
 A (hopefully) temporary solution to implement the pipe operator in PHP.
 
@@ -45,19 +38,6 @@ composer require sebastiaanluca/php-pipe-operator
 ```
 
 ### How to use
-
-```php
-take('https://blog.sebastiaanluca.com')
-    ->pipe('parse_url')
-    ->pipe('end')
-    ->pipe('explode', '.', '$$')
-    ->pipe('reset')
-    ->get()
-
-// "blog"
-```
-
-Similar using the shorthand helper:
 
 ```php
 take('https://blog.sebastiaanluca.com')
