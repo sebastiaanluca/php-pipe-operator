@@ -122,7 +122,7 @@ take('hello')->strtoupper(PIPED_VALUE)->get();
 // "HELLO"
 ```
 
-In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the replacement identifier (`PIPED_VALUE`). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
+In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the replacement identifier (the globally available `PIPED_VALUE` constant). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
 
 ```php
 take(['key' => 'value'])
@@ -142,8 +142,8 @@ take('string')
         return 'prefixed-' . $value;
     })
     ->get();
-    
-// "prefixed-string"    
+
+// "prefixed-string"
 ```
 
 ### Using public class methods
@@ -158,7 +158,7 @@ class MyClass
         take('my string')
             ->pipe([$this, 'uppercase'])
             ->get();
-        
+
         // "MY STRING"
     }
 
@@ -188,7 +188,7 @@ class MyClass
         take('HELLO')
             ->pipe(Closure::fromCallable([$this, 'lowercase']))
             ->get();
-        
+
         // "hello"
     }
 
