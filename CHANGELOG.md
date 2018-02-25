@@ -6,6 +6,16 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.0.0 (2018-02-25)
+
+### Added
+
+- `PIPED_VALUE` constant as the new identifier
+
+### Removed
+
+- `'$$'` default identifier and custom identifier option
+
 ## 1.0.0 (2018-02-24)
 
 ### Added
