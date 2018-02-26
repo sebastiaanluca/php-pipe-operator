@@ -9,12 +9,12 @@ class IdentifierTest extends TestCase
     /**
      * @test
      */
-    public function it uses the default identifier to replace the value() : void
+    public function it uses the identifier to replace the value() : void
     {
         $this->assertSame(
             'key',
             take(['key' => 'value'])
-                ->pipe('array_search', 'value', '$$')
+                ->pipe('array_search', 'value', PIPED_VALUE)
                 ->get()
         );
     }
@@ -22,12 +22,12 @@ class IdentifierTest extends TestCase
     /**
      * @test
      */
-    public function it uses the default identifier to replace the value using the method directly() : void
+    public function it uses the identifier to replace the value using the method directly() : void
     {
         $this->assertSame(
             'key',
             take(['key' => 'value'])
-                ->array_search('value', '$$')
+                ->array_search('value', PIPED_VALUE)
                 ->get()
         );
     }

@@ -39,7 +39,7 @@ class ObjectTest extends TestCase
             take('https://blog.sebastiaanluca.com')
                 ->pipe('parse_url')
                 ->pipe('end')
-                ->pipe('explode', '.', '$$')
+                ->pipe('explode', '.', PIPED_VALUE)
                 ->pipe('reset')
                 ->get()
         );
@@ -54,7 +54,7 @@ class ObjectTest extends TestCase
             'blog',
             take('https://blog.sebastiaanluca.com')
                 ->parse_url(PHP_URL_HOST)
-                ->explode('.', '$$')
+                ->explode('.', PIPED_VALUE)
                 ->reset()
                 ->get()
         );
@@ -70,7 +70,7 @@ class ObjectTest extends TestCase
             take('https://blog.sebastiaanluca.com')
                 ->pipe('parse_url')
                 ->end()
-                ->explode('.', '$$')
+                ->explode('.', PIPED_VALUE)
                 ->pipe('reset')
                 ->get()
         );

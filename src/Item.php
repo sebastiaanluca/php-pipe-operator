@@ -12,22 +12,15 @@ class Item
     protected $value;
 
     /**
-     * A unique string that will be replaced with the actual value when calling the pipe method
-     * with it.
-     *
-     * @var string
-     */
-    protected $identifier;
-
-    /**
      * @param mixed $value The value you want to process.
-     * @param string $identifier The identifier to replace the value with in method calls that
-     *     don't take the value as first parameter.
      */
-    public function __construct($value, $identifier = '$$')
+    public function __construct($value)
     {
         $this->value = $value;
-        $this->identifier = $identifier;
+
+        if (! defined('PIPED_VALUE')) {
+            define('PIPED_VALUE', 'PIPED_VALUE-' . uniqid());
+        }
     }
 
     /**
@@ -55,13 +48,13 @@ class Item
         //argument to call the method with. If it does get used though, we should
         // replace any occurrence of it with the actual value.
 
-        if (! in_array($this->identifier, $arguments, true)) {
+        if (! in_array(PIPED_VALUE, $arguments, true)) {
             // Add the given item value as first parameter to call the pipe method with
             array_unshift($arguments, $this->value);
         }
         else {
             $arguments = array_map(function ($argument) {
-                return $argument === $this->identifier ? $this->value : $argument;
+                return $argument === PIPED_VALUE ? $this->value : $argument;
             }, $arguments);
         }
 
