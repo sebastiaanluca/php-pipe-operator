@@ -25,7 +25,6 @@ A (hopefully) temporary solution to implement the pipe operator in PHP.
     - [Using closures](#using-closures)
     - [Using public class methods](#using-public-class-methods)
     - [Using private class methods](#using-private-class-methods)
-    - [Changing the replacement identifier](#changing-the-replacement-identifier)
 - [Notes](#notes)
 - [License](#license)
 - [Change log](#change-log)
@@ -104,7 +103,7 @@ Of course that's not very useful since you could've just used `strtoupper('hello
 $subdomain = take('https://blog.sebastiaanluca.com')
     ->parse_url()
     ->end()
-    ->explode('.', '$$')
+    ->explode('.', PIPED_VALUE)
     ->reset()
     ->get();
 
@@ -118,16 +117,16 @@ take('hello')->strtoupper()->get();
 
 // "HELLO"
 
-take('hello')->strtoupper('$$')->get();
+take('hello')->strtoupper(PIPED_VALUE)->get();
 
 // "HELLO"
 ```
 
-In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the default replacement identifier (`$$`). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
+In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the replacement identifier (the globally available `PIPED_VALUE` constant). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
 
 ```php
 take(['key' => 'value'])
-    ->array_search('value', '$$')
+    ->array_search('value', PIPED_VALUE)
     ->get();
 
 // "key"
@@ -143,8 +142,8 @@ take('string')
         return 'prefixed-' . $value;
     })
     ->get();
-    
-// "prefixed-string"    
+
+// "prefixed-string"
 ```
 
 ### Using public class methods
@@ -159,7 +158,7 @@ class MyClass
         take('my string')
             ->pipe([$this, 'uppercase'])
             ->get();
-        
+
         // "MY STRING"
     }
 
@@ -189,7 +188,7 @@ class MyClass
         take('HELLO')
             ->pipe(Closure::fromCallable([$this, 'lowercase']))
             ->get();
-        
+
         // "hello"
     }
 
@@ -203,18 +202,6 @@ class MyClass
         return mb_strtolower($value);
     }
 }
-```
-
-### Changing the replacement identifier
-
-If you don't like the default `$$` replacement identifier or it's needed as a literal value, you can change it to whatever you like by passing it as second parameter to the take method or `Item` class constructor:
-
-```php
-take(['key' => 'value'], '%')
-    ->pipe('array_search', 'value', '%')
-    ->get();
-    
-// "key"
 ```
 
 ## Notes
