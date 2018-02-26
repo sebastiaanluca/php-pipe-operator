@@ -6,6 +6,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.0.0 (2018-02-26)
+
 ### Added
 
 - Added the `PIPED_VALUE` constant as the new identifier
