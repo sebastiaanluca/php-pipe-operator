@@ -77,6 +77,20 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
+    public function it can transform a value using a proxied private class method() : void
+    {
+        $this->assertSame(
+            'start-add-this',
+            take('START')
+                ->pipe($this)->join('ADD', 'this')
+                ->pipe($this)->lowercase()
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
     public function it can transform a value while accepting pipe parameters() : void
     {
         $this->assertSame(
@@ -118,5 +132,15 @@ class MethodsTest extends TestCase
     private function lowercase(string $value) : string
     {
         return mb_strtolower($value);
+    }
+
+    /**
+     * @param array ...$values
+     *
+     * @return string
+     */
+    private function join(...$values) : string
+    {
+        return implode('-', $values);
     }
 }
