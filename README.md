@@ -177,7 +177,7 @@ class MyClass
 
 If you don't want to use the internal pipe proxy and pass `$this`, there are two other ways you can use class methods.
 
-Using an array:
+Using an array (for public methods only):
 
 ```php
 class MyClass
@@ -196,14 +196,14 @@ class MyClass
      *
      * @return string
      */
-    private function lowercase(string $value) : string
+    public function lowercase(string $value) : string
     {
         return mb_strtolower($value);
     }
 }
 ```
 
-Parsing the callable method to a closure:
+By parsing the callable method to a closure:
 
 ```php
 use Closure;

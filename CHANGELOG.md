@@ -6,6 +6,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.1.1 (2018-03-18)
+
+### Fixed
+
+- Fix class method example in readme
+
 ## 2.1.0 (2018-03-18)
 
 ### Added
