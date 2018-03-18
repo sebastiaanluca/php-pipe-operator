@@ -64,6 +64,19 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
+    public function it can transform a value using a proxied public class method() : void
+    {
+        $this->assertSame(
+            'UPPERCASE',
+            take('uppercase')
+                ->pipe($this)->uppercase()
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
     public function it can transform a value using a private class method() : void
     {
         $this->assertSame(
