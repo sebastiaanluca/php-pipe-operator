@@ -30,7 +30,7 @@ class PipeProxy
      * @param string $method
      * @param array $arguments
      *
-     * @return \SebastiaanLuca\PipeOperator\Item $this
+     * @return \SebastiaanLuca\PipeOperator\Item
      */
     public function __call($method, array $arguments)
     {

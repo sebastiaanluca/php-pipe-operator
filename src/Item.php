@@ -40,7 +40,7 @@ class Item
      * @param callable|string|object $callback
      * @param array ...$arguments
      *
-     * @return \SebastiaanLuca\PipeOperator\Item $this
+     * @return \SebastiaanLuca\PipeOperator\Item|\SebastiaanLuca\PipeOperator\PipeProxy
      */
     public function pipe($callback, ...$arguments)
     {
@@ -59,11 +59,12 @@ class Item
      * Add the given value to the list of arguments.
      *
      * @param  array $arguments
+     *
      * @return array
      */
     public function addValueToArguments(array $arguments) : array
     {
-        // If the caller hasn't explicitely specified where they want the value
+        // If the caller hasn't explicitly specified where they want the value
         // to be added, we will add it as the first value. Otherwise we will
         // replace all occurrences of PIPED_VALUE with the original value.
 
