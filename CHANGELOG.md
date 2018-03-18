@@ -6,6 +6,12 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 2.1.0 (2018-03-18)
+
+### Added
+
+- Add proxy for private instance methods
+
 ## 2.0.0 (2018-02-26)
 
 ### Added
