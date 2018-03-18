@@ -23,8 +23,7 @@ A (hopefully) temporary solution to implement the pipe operator in PHP.
 - [How to use](#how-to-use)
     - [The basics](#the-basics)
     - [Using closures](#using-closures)
-    - [Using public class methods](#using-public-class-methods)
-    - [Using private class methods](#using-private-class-methods)
+    - [Using class methods](#using-class-methods)
 - [Notes](#notes)
 - [License](#license)
 - [Change log](#change-log)
@@ -146,20 +145,20 @@ take('string')
 // "prefixed-string"
 ```
 
-### Using public class methods
+### Using class methods
 
-The same is possible using a public class method:
+The same is possible using a class method (regardless of visibility):
 
 ```php
 class MyClass
 {
     public function __construct()
     {
-        take('my string')
-            ->pipe([$this, 'uppercase'])
+        take('HELLO')
+            ->pipe($this)->lowercase()
             ->get();
 
-        // "MY STRING"
+        // "hello"
     }
 
     /**
@@ -167,16 +166,44 @@ class MyClass
      *
      * @return string
      */
-    public function uppercase(string $value) : string
+    private function lowercase(string $value) : string
     {
-        return mb_strtoupper($value);
+        return mb_strtolower($value);
     }
 }
 ```
 
-### Using private class methods
+#### Class method alternatives
 
-And even protected or private class methods:
+If you don't want to use the internal pipe proxy and pass `$this`, there are two other ways you can use class methods.
+
+Using an array:
+
+```php
+class MyClass
+{
+    public function __construct()
+    {
+        take('HELLO')
+            ->pipe([$this, 'lowercase'])
+            ->get();
+
+        // "hello"
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    private function lowercase(string $value) : string
+    {
+        return mb_strtolower($value);
+    }
+}
+```
+
+Parsing the callable method to a closure:
 
 ```php
 use Closure;
@@ -186,7 +213,7 @@ class MyClass
     public function __construct()
     {
         take('HELLO')
-            ->pipe($this)->lowercase()
+            ->pipe(Closure::fromCallable([$this, 'lowercase']))
             ->get();
 
         // "hello"
