@@ -7,6 +7,16 @@ use Closure;
 class PipeProxy
 {
     /**
+     * @var \SebastiaanLuca\PipeOperator\Item
+     */
+    protected $item;
+
+    /**
+     * @var object
+     */
+    protected $object;
+
+    /**
      * @param \SebastiaanLuca\PipeOperator\Item $item
      * @param object $object
      */
