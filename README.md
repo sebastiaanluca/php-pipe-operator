@@ -186,7 +186,7 @@ class MyClass
     public function __construct()
     {
         take('HELLO')
-            ->pipe(Closure::fromCallable([$this, 'lowercase']))
+            ->pipe($this)->lowercase()
             ->get();
 
         // "hello"

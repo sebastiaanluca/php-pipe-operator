@@ -37,32 +37,44 @@ class Item
     /**
      * Perform an operation on the current value.
      *
-     * @param callable|string $callback
+     * @param callable|string|object $callback
      * @param array ...$arguments
      *
-     * @return \SebastiaanLuca\PipeOperator\Item $this
+     * @return \SebastiaanLuca\PipeOperator\Item|\SebastiaanLuca\PipeOperator\PipeProxy
      */
     public function pipe($callback, ...$arguments)
     {
-        // No explicit use of the value identifier means it should be the first
-        //argument to call the method with. If it does get used though, we should
-        // replace any occurrence of it with the actual value.
-
-        if (! in_array(PIPED_VALUE, $arguments, true)) {
-            // Add the given item value as first parameter to call the pipe method with
-            array_unshift($arguments, $this->value);
-        }
-        else {
-            $arguments = array_map(function ($argument) {
-                return $argument === PIPED_VALUE ? $this->value : $argument;
-            }, $arguments);
+        if (! is_callable($callback)) {
+            return new PipeProxy($this, $callback);
         }
 
         // Call the piped method
-        $this->value = $callback(...$arguments);
+        $this->value = $callback(...$this->addValueToArguments($arguments));
 
         // Allow method chaining
         return $this;
+    }
+
+    /**
+     * Add the given value to the list of arguments.
+     *
+     * @param  array $arguments
+     *
+     * @return array
+     */
+    public function addValueToArguments(array $arguments) : array
+    {
+        // If the caller hasn't explicitly specified where they want the value
+        // to be added, we will add it as the first value. Otherwise we will
+        // replace all occurrences of PIPED_VALUE with the original value.
+
+        if (! in_array(PIPED_VALUE, $arguments, true)) {
+            return array_merge([$this->value], $arguments);
+        }
+
+        return array_map(function ($argument) {
+            return $argument === PIPED_VALUE ? $this->value : $argument;
+        }, $arguments);
     }
 
     /**
