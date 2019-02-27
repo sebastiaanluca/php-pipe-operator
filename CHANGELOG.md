@@ -6,6 +6,16 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 
+## 3.0.0 (2019-02-27)
+
+### Changed
+
+- Upgraded to PHPUnit 8
+
+### Removed
+
+- Dropped support for PHP 7.1 and lower
+
 ## 2.1.1 (2018-03-18)
 
 ### Fixed

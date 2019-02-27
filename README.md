@@ -35,7 +35,7 @@ A (hopefully) temporary solution to implement the pipe operator in PHP.
 
 ## Requirements
 
-- PHP 7.1 or higher
+- PHP 7.2 or higher
 
 ## How to install
 
