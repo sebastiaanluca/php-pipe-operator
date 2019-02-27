@@ -19,10 +19,10 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -37,10 +37,18 @@
             "SebastiaanLuca\\PipeOperator\\Tests\\": "tests"
         }
     },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-lowest": [
+            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+            "@test"
+        ],
+        "test-stable": [
+            "composer update --prefer-stable --prefer-dist --no-interaction --ansi",
+            "@test"
+        ]
     }
 }
