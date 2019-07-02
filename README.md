@@ -1,16 +1,17 @@
 # PHP Pipe Operator
 
-<a href="https://packagist.org/packages/sebastiaanluca/php-pipe-operator"><img src="https://poser.pugx.org/sebastiaanluca/php-pipe-operator/version" alt="Latest stable release"></img></a>
-<a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Software license"></img></a>
-<a href="https://travis-ci.org/sebastiaanluca/php-pipe-operator"><img src="https://img.shields.io/travis/sebastiaanluca/php-pipe-operator/master.svg" alt="Build status"></img></a>
-<a href="https://packagist.org/packages/sebastiaanluca/php-pipe-operator"><img src="https://img.shields.io/packagist/dt/sebastiaanluca/php-pipe-operator.svg" alt="Total downloads"></img></a>
+[![Latest stable release][version-badge]][link-packagist]
+[![Software license][license-badge]](LICENSE.md)
+[![Build status][travis-badge]][link-travis]
+[![Total downloads][downloads-badge]][link-packagist]
+[![Total stars][stars-badge]][link-github]
 
-<a href="https://packagist.org/packages/sebastiaanluca"><img src="https://img.shields.io/badge/link-packagist-lightgrey.svg" alt="View my other packages and projects"></img></a>
-<a href="https://blog.sebastiaanluca.com"><img src="https://img.shields.io/badge/link-blog-lightgrey.svg" alt="Read my blog"></img></a>
-<a href="https://twitter.com/sebastiaanluca"><img src="https://img.shields.io/twitter/follow/sebastiaanluca.svg?style=social" alt="Follow @sebastiaanluca on Twitter"></img></a>
-<a href="https://twitter.com/intent/tweet?text=Use%20PHP%27s%20pipe%20operator%20now!%20https%3A%2F%2Fgithub.com%2Fsebastiaanluca%2Fphp-pipe-operator%20via%20%40sebastiaanluca&source=webclient"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Share this package on Twitter"></img></a>
+[![Read my blog][blog-link-badge]][link-blog]
+[![View my other packages and projects][packages-link-badge]][link-packages]
+[![Follow @sebastiaanluca on Twitter][twitter-profile-badge]][link-twitter]
+[![Share this package on Twitter][twitter-share-badge]][link-twitter-share]
 
-A (hopefully) temporary solution to implement the pipe operator in PHP.
+**A (hopefully) temporary solution to implement the pipe operator in PHP.**
 
 ## Table of contents
 
@@ -269,12 +270,28 @@ My name is Sebastiaan and I'm a freelance Laravel developer specializing in buil
 
 Have a project that could use some guidance? Send me an e-mail at [hello@sebastiaanluca.com][link-author-email]!
 
+
+[version-badge]: https://img.shields.io/packagist/v/sebastiaanluca/php-pipe-operator.svg?label=stable
+[license-badge]: https://img.shields.io/badge/license-MIT-informational.svg
+[travis-badge]: https://img.shields.io/travis/sebastiaanluca/php-pipe-operator/master.svg
+[downloads-badge]: https://img.shields.io/packagist/dt/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
+[stars-badge]: https://img.shields.io/github/stars/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
+
+[blog-link-badge]: https://img.shields.io/badge/link-blog-lightgrey.svg
+[packages-link-badge]: https://img.shields.io/badge/link-other_packages-lightgrey.svg
+[twitter-profile-badge]: https://img.shields.io/twitter/follow/sebastiaanluca.svg?style=social
+[twitter-share-badge]: https://img.shields.io/twitter/url/http/shields.io.svg?style=social
+
+[link-github]: https://github.com/sebastiaanluca/php-pipe-operator
 [link-packagist]: https://packagist.org/packages/sebastiaanluca/php-pipe-operator
 [link-travis]: https://travis-ci.org/sebastiaanluca/php-pipe-operator
+[link-twitter-share]: https://twitter.com/intent/tweet?text=Use%20PHP%27s%20pipe%20operator%20now!%20https%3A%2F%2Fgithub.com%2Fsebastiaanluca%2Fphp-pipe-operator%20via%20%40sebastiaanluca
 [link-contributors]: ../../contributors
 
 [link-portfolio]: https://www.sebastiaanluca.com
 [link-blog]: https://blog.sebastiaanluca.com
 [link-packages]: https://packagist.org/packages/sebastiaanluca
+[link-twitter]: https://twitter.com/sebastiaanluca
 [link-github-profile]: https://github.com/sebastiaanluca
 [link-author-email]: mailto:hello@sebastiaanluca.com
+
