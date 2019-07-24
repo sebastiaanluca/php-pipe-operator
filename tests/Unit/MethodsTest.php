@@ -148,11 +148,11 @@ class MethodsTest extends TestCase
     }
 
     /**
-     * @param array ...$values
+     * @param string ...$values
      *
      * @return string
      */
-    private function join(...$values) : string
+    private function join(string ...$values) : string
     {
         return implode('-', $values);
     }
