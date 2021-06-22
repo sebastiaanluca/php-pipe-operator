@@ -1,4 +1,7 @@
-composer.phar
+.phpunit.result.cache
+/.idea
 composer.lock
-vendor
-tests/files/
+composer.phar
+phpunit.xml
+tests/temp/
+vendor/
