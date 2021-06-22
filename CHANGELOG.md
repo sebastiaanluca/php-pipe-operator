@@ -9,6 +9,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 
 - Added support for PHP 8
+- Added static constructor
 
 ### Changed
 

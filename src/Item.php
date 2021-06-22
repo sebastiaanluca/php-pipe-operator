@@ -15,12 +15,17 @@ class Item
         }
     }
 
+    public static function from($value): self
+    {
+        return new self($value);
+    }
+
     public function __call(string $name, array $arguments): mixed
     {
         return $this->pipe($name, ...$arguments);
     }
 
-    public function pipe(callable|object|string $callback, mixed ...$arguments): Item|PipeProxy
+    public function pipe(callable|object|string $callback, mixed ...$arguments): self|PipeProxy
     {
         if (! is_callable($callback)) {
             return new PipeProxy($this, $callback);
