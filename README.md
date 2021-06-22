@@ -2,7 +2,7 @@
 
 [![Latest stable release][version-badge]][link-packagist]
 [![Software license][license-badge]](LICENSE.md)
-[![Build status][travis-badge]][link-travis]
+[![Build status][githubaction-badge]][link-githubaction]
 [![Total downloads][downloads-badge]][link-packagist]
 [![Total stars][stars-badge]][link-github]
 
@@ -36,7 +36,7 @@
 
 ## Requirements
 
-- PHP 7.2 or higher
+- PHP 8 or higher
 
 ## How to install
 
@@ -138,9 +138,7 @@ Sometimes standard methods don't cut it and you need to perform a custom operati
 
 ```php
 take('string')
-    ->pipe(function (string $value) {
-        return 'prefixed-' . $value;
-    })
+    ->pipe(fn(string $value): string => 'prefixed-' . $value)
     ->get();
 
 // "prefixed-string"
@@ -273,7 +271,7 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 
 [version-badge]: https://img.shields.io/packagist/v/sebastiaanluca/php-pipe-operator.svg?label=stable
 [license-badge]: https://img.shields.io/badge/license-MIT-informational.svg
-[travis-badge]: https://img.shields.io/travis/sebastiaanluca/php-pipe-operator/master.svg
+[githubaction-badge]: https://github.com/sebastiaanluca/php-pipe-operator/actions/workflows/test.yml/badge.svg?branch=master
 [downloads-badge]: https://img.shields.io/packagist/dt/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
 [stars-badge]: https://img.shields.io/github/stars/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
 
@@ -284,12 +282,12 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 
 [link-github]: https://github.com/sebastiaanluca/php-pipe-operator
 [link-packagist]: https://packagist.org/packages/sebastiaanluca/php-pipe-operator
-[link-travis]: https://travis-ci.org/sebastiaanluca/php-pipe-operator
+[link-githubaction]: https://github.com/sebastiaanluca/php-pipe-operator/actions/workflows/test.yml?query=branch%3Amaster
 [link-twitter-share]: https://twitter.com/intent/tweet?text=Use%20PHP%27s%20pipe%20operator%20now!%20https%3A%2F%2Fgithub.com%2Fsebastiaanluca%2Fphp-pipe-operator%20via%20%40sebastiaanluca
 [link-contributors]: ../../contributors
 
-[link-portfolio]: https://www.sebastiaanluca.com
-[link-blog]: https://blog.sebastiaanluca.com
+[link-portfolio]: https://sebastiaanluca.com
+[link-blog]: https://sebastiaanluca.com/blog
 [link-packages]: https://packagist.org/packages/sebastiaanluca
 [link-twitter]: https://twitter.com/sebastiaanluca
 [link-github-profile]: https://github.com/sebastiaanluca
