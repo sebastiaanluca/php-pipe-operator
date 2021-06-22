@@ -1,3 +1,11 @@
+---
+name: Pull request
+about: Create a new pull request to merge code into the main branch
+title: 'A short, descriptive title'
+labels: ''
+assignees: sebastiaanluca
+---
+
 ## PR Type
 
 What kind of pull request is this? Put an `x` in all the boxes that apply:
@@ -8,17 +16,16 @@ What kind of pull request is this? Put an `x` in all the boxes that apply:
 - [ ] Change feature (non-breaking change which either changes or refactors existing functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
-## What does it change?
+---
 
-Describe your changes in detail.
+### Description
 
-## Why this PR?
+Clearly describe what this pull request changes and why.
 
-Why is this change required? What problem does it solve?
+### Steps to follow to verify functionality
 
-## How has this been tested?
-
-Please describe in detail how you tested your changes (or are planning on testing them).
+1. Clearly state which actions should be performed to fully and correctly review this issue.
+2. …
 
 ## Checklist
 
@@ -32,3 +39,4 @@ To facilitate merging your change and the approval of this PR, please make sure 
 - If the change to the code requires a change to the documentation, it has been updated accordingly
 
 If you're unsure about any of these, don't hesitate to ask. We're here to help!
+
