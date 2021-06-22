@@ -53,7 +53,21 @@ composer require sebastiaanluca/php-pipe-operator
 The basic gist of the package is that it takes a value and performs one or more actions on it. A simple example:
 
 ```php
+use SebastiaanLuca\PipeOperator\Pipe;
+
+Pipe::from('hello')->strtoupper()->get();
+
+// "HELLO"
+```
+
+A few alternatives to write the same:
+
+```php
 take('hello')->strtoupper()->get();
+
+// "HELLO"
+
+pipe('hello')->strtoupper()->get();
 
 // "HELLO"
 ```
