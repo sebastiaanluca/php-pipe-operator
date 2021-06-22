@@ -75,7 +75,7 @@ pipe('hello')->strtoupper()->get();
 Of course that's not very useful since you could've just used `strtoupper('hello')` and be done with it, but the goal is to make multi-method calls on a value easier to read and write:
 
 ```php
-$subdomain = take('https://blog.sebastiaanluca.com')
+$subdomain = Pipe::from('https://blog.sebastiaanluca.com')
     ->parse_url()
     ->end()
     ->explode('.', PIPED_VALUE)
@@ -88,11 +88,11 @@ $subdomain = take('https://blog.sebastiaanluca.com')
 Note that in comparison to the original RFC, there's no need to pass the initial value to methods that receive the value as first parameter and have no other required parameters. The previous value is always passed as first parameter. In effect, both of the following examples will work:
 
 ```php
-take('hello')->strtoupper()->get();
+Pipe::from('hello')->strtoupper()->get();
 
 // "HELLO"
 
-take('hello')->strtoupper(PIPED_VALUE)->get();
+Pipe::from('hello')->strtoupper(PIPED_VALUE)->get();
 
 // "HELLO"
 ```
@@ -100,7 +100,7 @@ take('hello')->strtoupper(PIPED_VALUE)->get();
 In contrast, if a method takes e.g. a setting before the previous value, we need to set it manually using the replacement identifier (the globally available `PIPED_VALUE` constant). This identifier can be placed *anywhere* in the method call, it will simply be replaced by the previous value.
 
 ```php
-take(['key' => 'value'])
+Pipe::from(['key' => 'value'])
     ->array_search('value', PIPED_VALUE)
     ->get();
 
@@ -112,7 +112,7 @@ take(['key' => 'value'])
 Sometimes standard methods don't cut it and you need to perform a custom operation on a value in the process. You can do so using a closure:
 
 ```php
-take('string')
+Pipe::from('string')
     ->pipe(fn(string $value): string => 'prefixed-' . $value)
     ->get();
 
@@ -128,7 +128,7 @@ class MyClass
 {
     public function __construct()
     {
-        take('HELLO')
+        Pipe::from('HELLO')
             ->pipe($this)->lowercase()
             ->get();
 
@@ -158,7 +158,7 @@ class MyClass
 {
     public function __construct()
     {
-        take('HELLO')
+        Pipe::from('HELLO')
             ->pipe([$this, 'lowercase'])
             ->get();
 
@@ -186,7 +186,7 @@ class MyClass
 {
     public function __construct()
     {
-        take('HELLO')
+        Pipe::from('HELLO')
             ->pipe(Closure::fromCallable([$this, 'lowercase']))
             ->get();
 
