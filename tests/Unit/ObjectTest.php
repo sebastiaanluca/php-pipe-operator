@@ -3,17 +3,17 @@
 namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
 use PHPUnit\Framework\TestCase;
-use SebastiaanLuca\PipeOperator\Item;
+use SebastiaanLuca\PipeOperator\Pipe;
 
 class ObjectTest extends TestCase
 {
     /**
      * @test
      */
-    public function it returns an item object when get has not been called yet() : void
+    public function it returns an item object when get has not been called yet(): void
     {
         $this->assertInstanceOf(
-            Item::class,
+            Pipe::class,
             take('string')->pipe('strtoupper')
         );
     }
@@ -21,10 +21,10 @@ class ObjectTest extends TestCase
     /**
      * @test
      */
-    public function it returns an item object when get has not been called yet using the method directly() : void
+    public function it returns an item object when get has not been called yet using the method directly(): void
     {
         $this->assertInstanceOf(
-            Item::class,
+            Pipe::class,
             take('string')->strtoupper()
         );
     }
@@ -32,7 +32,7 @@ class ObjectTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a complex value in multiple steps() : void
+    public function it can transform a complex value in multiple steps(): void
     {
         $this->assertSame(
             'blog',
@@ -48,7 +48,7 @@ class ObjectTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a complex value in multiple steps using the method directly() : void
+    public function it can transform a complex value in multiple steps using the method directly(): void
     {
         $this->assertSame(
             'blog',
@@ -63,7 +63,7 @@ class ObjectTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a complex value in multiple steps using different method calls() : void
+    public function it can transform a complex value in multiple steps using different method calls(): void
     {
         $this->assertSame(
             'blog',

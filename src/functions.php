@@ -1,17 +1,23 @@
 <?php
 
-use SebastiaanLuca\PipeOperator\Item;
+use SebastiaanLuca\PipeOperator\Pipe;
 
 if (! function_exists('take')) {
     /**
      * Create a new piped item from a given value.
-     *
-     * @param mixed $value The value you want to process.
-     *
-     * @return \SebastiaanLuca\PipeOperator\Item
      */
-    function take($value) : Item
+    function take(mixed $value): Pipe
     {
-        return new Item($value);
+        return new Pipe($value);
+    }
+}
+
+if (! function_exists('pipe')) {
+    /**
+     * Create a new piped item from a given value.
+     */
+    function pipe(mixed $value): Pipe
+    {
+        return new Pipe($value);
     }
 }

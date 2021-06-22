@@ -9,7 +9,7 @@ class IdentifierTest extends TestCase
     /**
      * @test
      */
-    public function it uses the identifier to replace the value() : void
+    public function it uses the identifier to replace the value(): void
     {
         $this->assertSame(
             'key',
@@ -22,7 +22,7 @@ class IdentifierTest extends TestCase
     /**
      * @test
      */
-    public function it uses the identifier to replace the value using the method directly() : void
+    public function it uses the identifier to replace the value using the method directly(): void
     {
         $this->assertSame(
             'key',
