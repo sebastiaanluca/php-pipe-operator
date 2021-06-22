@@ -17,14 +17,14 @@
 
 - [Requirements](#requirements)
 - [How to install](#how-to-install)
-- [What does it solve?](#what-does-it-solve)
-    - [A simple example](#a-simple-example)
-    - [Another way of writing](#another-way-of-writing)
-    - [More examples of the issue at hand](#more-examples-of-the-issue-at-hand)
 - [How to use](#how-to-use)
     - [The basics](#the-basics)
     - [Using closures](#using-closures)
     - [Using class methods](#using-class-methods)
+- [What does it solve?](#what-does-it-solve)
+    - [A simple example](#a-simple-example)
+    - [Another way of writing](#another-way-of-writing)
+    - [More examples of the issue at hand](#more-examples-of-the-issue-at-hand)
 - [Notes](#notes)
 - [License](#license)
 - [Change log](#change-log)
@@ -45,45 +45,6 @@ Via Composer:
 ```bash
 composer require sebastiaanluca/php-pipe-operator
 ```
-
-## What does it solve?
-
-This package is based on the [pipe operator RFC by Sara Golemon (2016)](https://wiki.php.net/rfc/pipe-operator), who explains the problem as:
-
->A common PHP OOP pattern is the use of method chaining, or what is also known as “Fluent Expressions”. […] This works well enough for OOP classes which were designed for fluent calling, however it is impossible, or at least unnecessarily arduous, to adapt non-fluent classes to this usage style, harder still for functional interfaces.
-
-Coming across the proposal, I also [blogged about it](https://blog.sebastiaanluca.com/enabling-php-method-chaining-with-a-makeshift-pipe-operator).
-
-### A simple example
-
-Say you want to get the subdomain from a URL, you end up with something like this:
-
-```php
-$subdomain = 'https://blog.sebastiaanluca.com/';
-$subdomain = parse_url($subdomain, PHP_URL_HOST);
-$subdomain = explode('.', $subdomain);
-$subdomain = reset($subdomain);
-
-// "blog"
-```
-
-This works, of course, but it's quite verbose and repetitive.
-
-### Another way of writing
-
-Same result, different style:
-
-```php
-$subdomain = explode('.', parse_url('https://blog.sebastiaanluca.com/', PHP_URL_HOST))[0];
-
-// "blog"
-```
-
-This might be the worst of all solutions, as it requires you to start reading from the center, work your way towards the outer methods, and keep switching back and forth. The more methods and variants, the more difficult to get a sense of what's going on.
-
-### More examples of the issue at hand
-
-See [Sara's RFC](https://wiki.php.net/rfc/pipe-operator#introduction) for more complex and real-world examples.
 
 ## How to use
 
@@ -229,6 +190,45 @@ class MyClass
     }
 }
 ```
+
+## What does it solve?
+
+This package is based on the [pipe operator RFC by Sara Golemon (2016)](https://wiki.php.net/rfc/pipe-operator), who explains the problem as:
+
+>A common PHP OOP pattern is the use of method chaining, or what is also known as “Fluent Expressions”. […] This works well enough for OOP classes which were designed for fluent calling, however it is impossible, or at least unnecessarily arduous, to adapt non-fluent classes to this usage style, harder still for functional interfaces.
+
+Coming across the proposal, I also [blogged about it](https://sebastiaanluca.com/blog/enabling-php-method-chaining-with-a-makeshift-pipe-operator).
+
+### A simple example
+
+Say you want to get the subdomain from a URL, you end up with something like this:
+
+```php
+$subdomain = 'https://blog.sebastiaanluca.com/';
+$subdomain = parse_url($subdomain, PHP_URL_HOST);
+$subdomain = explode('.', $subdomain);
+$subdomain = reset($subdomain);
+
+// "blog"
+```
+
+This works, of course, but it's quite verbose and repetitive.
+
+### Another way of writing
+
+Same result, different style:
+
+```php
+$subdomain = explode('.', parse_url('https://blog.sebastiaanluca.com/', PHP_URL_HOST))[0];
+
+// "blog"
+```
+
+This might be the worst of all solutions, as it requires you to start reading from the center, work your way towards the outer methods, and keep switching back and forth. The more methods and variants, the more difficult to get a sense of what's going on.
+
+### More examples of the issue at hand
+
+See [Sara's RFC](https://wiki.php.net/rfc/pipe-operator#introduction) for more complex and real-world examples.
 
 ## Notes
 

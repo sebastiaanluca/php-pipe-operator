@@ -4,7 +4,7 @@ namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
 use Closure;
 use PHPUnit\Framework\TestCase;
-use SebastiaanLuca\PipeOperator\Item;
+use SebastiaanLuca\PipeOperator\Pipe;
 
 class MethodsTest extends TestCase
 {
@@ -13,7 +13,7 @@ class MethodsTest extends TestCase
      */
     public function it can transform using the static constructor(): void
     {
-        $result = Item::from('https://blog.github.com')
+        $result = Pipe::from('https://blog.github.com')
             ->parse_url()
             ->end()
             ->explode('.', PIPED_VALUE)

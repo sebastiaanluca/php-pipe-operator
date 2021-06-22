@@ -2,7 +2,7 @@
 
 namespace SebastiaanLuca\PipeOperator;
 
-class Item
+class Pipe
 {
     protected mixed $value;
 

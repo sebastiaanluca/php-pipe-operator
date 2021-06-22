@@ -6,16 +6,16 @@ use Closure;
 
 class PipeProxy
 {
-    protected Item $item;
+    protected Pipe $item;
     protected object $object;
 
-    public function __construct(Item $item, object $object)
+    public function __construct(Pipe $item, object $object)
     {
         $this->item = $item;
         $this->object = $object;
     }
 
-    public function __call(string $method, array $arguments): Item
+    public function __call(string $method, array $arguments): Pipe
     {
         $callback = Closure::bind(function (...$arguments) use ($method) {
             return $this->{$method}(...$arguments);
