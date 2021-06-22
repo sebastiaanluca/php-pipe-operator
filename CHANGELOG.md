@@ -10,6 +10,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 - Added support for PHP 8
 
+### Changed
+
+- Internal PHP 8 code updates
+
 ### Removed
 
 - Removed support for PHP 7

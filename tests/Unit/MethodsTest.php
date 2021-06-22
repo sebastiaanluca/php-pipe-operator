@@ -10,7 +10,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a callable string method() : void
+    public function it can transform a value using a callable string method(): void
     {
         $this->assertSame(
             'STRING',
@@ -23,7 +23,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a callable string method using the method directly() : void
+    public function it can transform a value using a callable string method using the method directly(): void
     {
         $this->assertSame(
             'STRING',
@@ -36,13 +36,13 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a closure() : void
+    public function it can transform a value using a closure(): void
     {
         $this->assertSame(
             'prefixed-string',
             take('string')
                 ->pipe(function (string $value) {
-                    return 'prefixed-' . $value;
+                    return 'prefixed-'.$value;
                 })
                 ->get()
         );
@@ -51,7 +51,20 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a public class method() : void
+    public function it can transform a value using a short closure(): void
+    {
+        $this->assertSame(
+            'prefixed-string',
+            take('string')
+                ->pipe(fn (string $value): string => 'prefixed-'.$value)
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it can transform a value using a public class method(): void
     {
         $this->assertSame(
             'UPPERCASE',
@@ -64,7 +77,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a proxied public class method() : void
+    public function it can transform a value using a proxied public class method(): void
     {
         $this->assertSame(
             'UPPERCASE',
@@ -77,7 +90,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a private class method() : void
+    public function it can transform a value using a private class method(): void
     {
         $this->assertSame(
             'lowercase',
@@ -90,7 +103,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value using a proxied private class method() : void
+    public function it can transform a value using a proxied private class method(): void
     {
         $this->assertSame(
             'start-add-this',
@@ -104,7 +117,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value while accepting pipe parameters() : void
+    public function it can transform a value while accepting pipe parameters(): void
     {
         $this->assertSame(
             ['KEY' => 'value'],
@@ -117,7 +130,7 @@ class MethodsTest extends TestCase
     /**
      * @test
      */
-    public function it can transform a value while accepting pipe parameters using the method directly() : void
+    public function it can transform a value while accepting pipe parameters using the method directly(): void
     {
         $this->assertSame(
             ['KEY' => 'value'],
@@ -127,32 +140,17 @@ class MethodsTest extends TestCase
         );
     }
 
-    /**
-     * @param string $value
-     *
-     * @return string
-     */
-    public function uppercase(string $value) : string
+    public function uppercase(string $value): string
     {
         return mb_strtoupper($value);
     }
 
-    /**
-     * @param string $value
-     *
-     * @return string
-     */
-    private function lowercase(string $value) : string
+    private function lowercase(string $value): string
     {
         return mb_strtolower($value);
     }
 
-    /**
-     * @param array ...$values
-     *
-     * @return string
-     */
-    private function join(...$values) : string
+    private function join(string ...$values): string
     {
         return implode('-', $values);
     }
