@@ -4,7 +4,15 @@ All notable changes to `sebastiaanluca/php-pipe-operator` will be documented in 
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Unreleased
+## 4.0.0 (2021-06-22)
+
+### Added
+
+- Added support for PHP 8
+
+### Removed
+
+- Removed support for PHP 7
 
 ## 3.0.0 (2019-02-27)
 
