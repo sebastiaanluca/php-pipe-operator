@@ -232,6 +232,8 @@ $finder = Finder::create()
     ])
     ->name('*.php')
     ->notName('*.blade.php')
+    // Remove when dropping support for PHP 8.0
+    ->notName('MethodsTest.php')
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
