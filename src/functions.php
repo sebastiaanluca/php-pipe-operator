@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use SebastiaanLuca\PipeOperator\Pipe;
 
 if (! function_exists('take')) {
