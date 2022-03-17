@@ -12,14 +12,8 @@ assignees: sebastiaanluca
 
 ### Steps to reproduce
 
-1.
-2.
-3.
+Please provide a fully working repository that reproduces the bug.
 
-### Traces
+### Additional info
 
-Logs, error output, etc.
-
-### Environment information
-
-Setup, environment, packages, versions, etc.
+Logs, error output, setup, environment, packages, versions, etc.
