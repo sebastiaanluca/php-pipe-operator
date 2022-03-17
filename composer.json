@@ -22,8 +22,9 @@
         "php": "~8.0|~8.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "friendsofphp/php-cs-fixer": "^3.7",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
@@ -41,15 +42,26 @@
     "config": {
         "sort-packages": true
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
+        "composer:validate": "@composer validate --strict --ansi",
         "test": "vendor/bin/phpunit",
-        "test-lowest": [
-            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+        "lint": "vendor/bin/php-cs-fixer fix --dry-run --diff --ansi",
+        "fix": "vendor/bin/php-cs-fixer fix --ansi",
+        "check": [
+            "@composer:validate",
+            "@lint",
             "@test"
         ],
-        "test-stable": [
+        "check:lowest": [
+            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+            "@check"
+        ],
+        "check:stable": [
             "composer update --prefer-stable --prefer-dist --no-interaction --ansi",
-            "@test"
+            "@check"
         ]
     }
 }
+
