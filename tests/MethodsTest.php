@@ -51,6 +51,20 @@ class MethodsTest extends TestCase
 
     /**
      * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first call callable string method using the method directly(): void
+    {
+        $this->assertSame(
+            'stringggg',
+            take('STRINGGgg')
+                ->pipe(strtolower(...))
+                ->get()
+        );
+    }
+
+    /**
+     * @test
      */
     public function it can transform a value using a closure(): void
     {
@@ -86,6 +100,20 @@ class MethodsTest extends TestCase
             'UPPERCASE',
             take('uppercase')
                 ->pipe([$this, 'uppercase'])
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first class callable class method(): void
+    {
+        $this->assertSame(
+            'UPPERCASE',
+            take('uppercase')
+                ->pipe($this->uppercase(...))
                 ->get()
         );
     }
