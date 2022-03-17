@@ -19,7 +19,7 @@ Method chaining (or fluent expressions) **for any value using any method.**
 - [How to install](#how-to-install)
 - [How to use](#how-to-use)
     - [The basics](#the-basics)
-    - [Using first class callable syntax](#using-first-class-callable-syntax-enabling-ide-autocompletion)
+    - [Using first class callable syntax (enabling IDE autocompletion)](#using-first-class-callable-syntax-enabling-ide-autocompletion)
     - [Using closures](#using-closures)
     - [Using class methods](#using-class-methods)
 - [What does it solve?](#what-does-it-solve)

@@ -4,6 +4,13 @@ All notable changes to `sebastiaanluca/php-pipe-operator` will be documented in 
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 5.0.1 (2022-03-17)
+
+### Fixed
+
+- Fixed linting
+- Fixed test namespaces
+
 ## 5.0.0 (2022-03-17)
 
 ### Added

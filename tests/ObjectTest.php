@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
+namespace SebastiaanLuca\PipeOperator\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SebastiaanLuca\PipeOperator\Pipe;
