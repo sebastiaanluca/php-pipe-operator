@@ -11,7 +11,7 @@
 [![Follow @sebastiaanluca on Twitter][twitter-profile-badge]][link-twitter]
 [![Share this package on Twitter][twitter-share-badge]][link-twitter-share]
 
-**A (hopefully) temporary solution to implement the pipe operator in PHP.**
+Method chaining (or fluent expressions) **for any value using any method.**
 
 ## Table of contents
 
@@ -36,7 +36,7 @@
 
 ## Requirements
 
-- PHP 8 or higher
+- PHP 8 or 8.1
 
 ## How to install
 
