@@ -53,7 +53,6 @@ class MethodsTest extends TestCase
 
     /**
      * @test
-     * @requires PHP >= 8.1
      */
     public function it can transform a value using a first class callable method(): void
     {
@@ -67,7 +66,6 @@ class MethodsTest extends TestCase
 
     /**
      * @test
-     * @requires PHP >= 8.1
      */
     public function it can transform a value using a first class callable method with parameters(): void
     {
@@ -125,7 +123,6 @@ class MethodsTest extends TestCase
 
     /**
      * @test
-     * @requires PHP >= 8.1
      */
     public function it can transform a value using a first class callable class method(): void
     {
