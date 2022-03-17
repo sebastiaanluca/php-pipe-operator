@@ -53,13 +53,30 @@ class MethodsTest extends TestCase
      * @test
      * @requires PHP >= 8.1
      */
-    public function it can transform a value using a first call callable string method using the method directly(): void
+    public function it can transform a value using a first class callable method(): void
     {
         $this->assertSame(
             'stringggg',
             take('STRINGGgg')
                 ->pipe(strtolower(...))
                 ->get()
+        );
+    }
+
+    /**
+     * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first class callable method with parameters(): void
+    {
+        $this->assertSame(
+            'OG',
+            Pipe::from('https://sebastiaanluca.com/blog')
+                ->pipe(parse_url(...))
+                ->end()
+                ->pipe(substr(...), PIPED_VALUE, 3)
+                ->pipe(strtoupper(...))
+                ->get(),
         );
     }
 

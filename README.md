@@ -19,6 +19,7 @@ Method chaining (or fluent expressions) **for any value using any method.**
 - [How to install](#how-to-install)
 - [How to use](#how-to-use)
     - [The basics](#the-basics)
+    - [Using first class callable syntax](#using-first-class-callable-syntax-enabling-ide-autocompletion)
     - [Using closures](#using-closures)
     - [Using class methods](#using-class-methods)
 - [What does it solve?](#what-does-it-solve)
@@ -60,7 +61,7 @@ Pipe::from('hello')->strtoupper()->get();
 // "HELLO"
 ```
 
-A few alternatives to write the same:
+A few alternatives to create the same instance:
 
 ```php
 take('hello')->strtoupper()->get();
@@ -107,6 +108,33 @@ Pipe::from(['key' => 'value'])
 // "key"
 ```
 
+### Using first class callable syntax (enabling IDE autocompletion)
+
+Since PHP 8.1, you can use a first class callable syntax, or simply put an anonymous function, to pipe the value through. This enables **full method autocompletion**.
+
+```php
+take('STRING')
+    ->pipe(strtolower(...))
+    ->get()
+
+// "string"
+```
+
+Or using parameters:
+
+```php
+Pipe::from('https://sebastiaanluca.com/blog')
+    ->pipe(parse_url(...))
+    ->end()
+    ->pipe(substr(...), PIPED_VALUE, 3)
+    ->pipe(strtoupper(...))
+    ->get(),
+
+// "OG"
+```
+
+
+
 ### Using closures
 
 Sometimes standard methods don't cut it and you need to perform a custom operation on a value in the process. You can do so using a closure:
@@ -150,6 +178,32 @@ class MyClass
 #### Class method alternatives
 
 If you don't want to use the internal pipe proxy and pass `$this`, there are two other ways you can use class methods.
+
+Using first class callable syntax:
+
+```php
+class MyClass
+{
+    public function __construct()
+    {
+        Pipe::from('HELLO')
+            ->pipe($this->lowercase(...))
+            ->get();
+
+        // "hello"
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return string
+     */
+    public function lowercase(string $value) : string
+    {
+        return mb_strtolower($value);
+    }
+}
+```
 
 Using an array (for public methods only):
 
