@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
 use PHPUnit\Framework\TestCase;

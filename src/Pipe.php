@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SebastiaanLuca\PipeOperator;
 
 class Pipe
@@ -15,14 +17,14 @@ class Pipe
         }
     }
 
-    public static function from($value): self
-    {
-        return new self($value);
-    }
-
     public function __call(string $name, array $arguments): mixed
     {
         return $this->pipe($name, ...$arguments);
+    }
+
+    public static function from($value): self
+    {
+        return new self($value);
     }
 
     public function pipe(callable|object|string $callback, mixed ...$arguments): self|PipeProxy

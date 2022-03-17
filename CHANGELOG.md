@@ -4,6 +4,17 @@ All notable changes to `sebastiaanluca/php-pipe-operator` will be documented in 
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 5.0.0 (2022-03-17)
+
+### Added
+
+- Added support for PHP 8.1
+- Added support for first class callable syntax (PHP 8.1)
+
+### Changed
+
+- Cleaned up internals
+
 ## 4.0.0 (2021-06-22)
 
 ### Added

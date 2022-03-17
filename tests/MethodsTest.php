@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SebastiaanLuca\PipeOperator\Tests\Unit\Classes;
 
 use Closure;
@@ -51,6 +53,37 @@ class MethodsTest extends TestCase
 
     /**
      * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first class callable method(): void
+    {
+        $this->assertSame(
+            'stringggg',
+            take('STRINGGgg')
+                ->pipe(strtolower(...))
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first class callable method with parameters(): void
+    {
+        $this->assertSame(
+            'OG',
+            Pipe::from('https://sebastiaanluca.com/blog')
+                ->pipe(parse_url(...))
+                ->end()
+                ->pipe(substr(...), PIPED_VALUE, 3)
+                ->pipe(strtoupper(...))
+                ->get(),
+        );
+    }
+
+    /**
+     * @test
      */
     public function it can transform a value using a closure(): void
     {
@@ -86,6 +119,20 @@ class MethodsTest extends TestCase
             'UPPERCASE',
             take('uppercase')
                 ->pipe([$this, 'uppercase'])
+                ->get()
+        );
+    }
+
+    /**
+     * @test
+     * @requires PHP >= 8.1
+     */
+    public function it can transform a value using a first class callable class method(): void
+    {
+        $this->assertSame(
+            'UPPERCASE',
+            take('uppercase')
+                ->pipe($this->uppercase(...))
                 ->get()
         );
     }

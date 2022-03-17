@@ -1,7 +1,7 @@
 {
     "name": "sebastiaanluca/php-pipe-operator",
     "type": "library",
-    "description": "A (hopefully) temporary solution to implement the pipe operator in PHP.",
+    "description": "Method chaining (or fluent expressions) for any value using any method.",
     "keywords": [
         "php",
         "pipe",
@@ -14,14 +14,16 @@
         {
             "name": "Sebastiaan Luca",
             "email": "hello@sebastiaanluca.com",
-            "homepage": "https://www.sebastiaanluca.com",
+            "homepage": "https://sebastiaanluca.com",
             "role": "Author"
         }
     ],
     "require": {
-        "php": "^8"
+        "php": "~8.0|~8.1"
     },
     "require-dev": {
+        "ext-mbstring": "*",
+        "friendsofphp/php-cs-fixer": "^3.7",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
@@ -40,15 +42,26 @@
     "config": {
         "sort-packages": true
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
+        "composer:validate": "@composer validate --strict --ansi",
         "test": "vendor/bin/phpunit",
-        "test-lowest": [
-            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+        "lint": "vendor/bin/php-cs-fixer fix --dry-run --diff --ansi",
+        "fix": "vendor/bin/php-cs-fixer fix --ansi",
+        "check": [
+            "@composer:validate",
+            "@lint",
             "@test"
         ],
-        "test-stable": [
+        "check:lowest": [
+            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+            "@check"
+        ],
+        "check:stable": [
             "composer update --prefer-stable --prefer-dist --no-interaction --ansi",
-            "@test"
+            "@check"
         ]
     }
 }
+

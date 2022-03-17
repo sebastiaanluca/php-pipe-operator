@@ -1,32 +1,38 @@
-name: test
+name: Check code
 
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 12 15 * *'
 
 jobs:
-  test:
+
+  check:
+    name: Run checks - PHP ${{ matrix.php }} - ${{ matrix.dependency-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        php: [8.0]
+        php: [8.0, 8.1]
         dependency-version: [prefer-lowest, prefer-stable]
         os: [ubuntu-latest]
-
-    name: PHP ${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Cache dependencies
+      - name: Cache PHP dependencies
+        uses: actions/cache@v2
+        with:
+          path: '**/vendor'
+          key: ${{ runner.os }}-vendor-cache-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-vendor-cache-
+
+      - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
           path: ~/.composer/cache/files
-          key: dependencies-${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+          key: composer-${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('composer.json') }}
 
       - name: Validate Composer configuration file
         run: composer validate --strict
@@ -39,8 +45,10 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: |
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
-      - name: Execute tests
+      - name: Lint code
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run tests
         run: vendor/bin/phpunit
