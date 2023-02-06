@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Cache PHP dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: '**/vendor'
           key: ${{ runner.os }}-vendor-cache-${{ hashFiles('**/composer.lock') }}
@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-vendor-cache-
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache/files
           key: composer-${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('composer.json') }}
