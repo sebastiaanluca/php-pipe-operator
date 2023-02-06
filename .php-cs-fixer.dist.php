@@ -214,6 +214,11 @@ $rules = [
     'ordered_imports' => [
         'sort_algorithm' => 'alpha',
     ],
+    'global_namespace_import' => [
+        'import_classes' => true,
+        'import_constants' => true,
+        'import_functions' => true,
+    ],
     'no_unneeded_control_parentheses' => [
         'statements' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'],
     ],
