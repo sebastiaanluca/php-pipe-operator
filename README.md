@@ -6,7 +6,7 @@
 [![Total downloads][downloads-badge]][link-packagist]
 [![Total stars][stars-badge]][link-github]
 
-[![Read my blog][blog-link-badge]][link-blog]
+[![Visit my website][website-link-badge]][link-website]
 [![View my other packages and projects][packages-link-badge]][link-packages]
 [![Follow @sebastiaanluca on Twitter][twitter-profile-badge]][link-twitter]
 [![Share this package on Twitter][twitter-share-badge]][link-twitter-share]
@@ -332,10 +332,9 @@ If you discover any security related issues, please email [hello@sebastiaanluca.
 
 ## About
 
-My name is Sebastiaan and I'm a freelance Laravel developer specializing in building custom Laravel applications. Check out my [portfolio][link-portfolio] for more information, [my blog][link-blog] for the latest tips and tricks, and my other [packages][link-packages] to kick-start your next project.
+My name is Sebastiaan and I'm a freelance back-end developer specializing in building custom Laravel web apps. Check out my [website][link-website] for more information and my other [packages][link-packages] to kick-start your next project.
 
 Have a project that could use some guidance? Send me an e-mail at [hello@sebastiaanluca.com][link-author-email]!
-
 
 [version-badge]: https://img.shields.io/packagist/v/sebastiaanluca/php-pipe-operator.svg?label=stable
 [license-badge]: https://img.shields.io/badge/license-MIT-informational.svg
@@ -343,7 +342,7 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 [downloads-badge]: https://img.shields.io/packagist/dt/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
 [stars-badge]: https://img.shields.io/github/stars/sebastiaanluca/php-pipe-operator.svg?color=brightgreen
 
-[blog-link-badge]: https://img.shields.io/badge/link-blog-lightgrey.svg
+[website-link-badge]: https://img.shields.io/badge/link-website-lightgrey.svg
 [packages-link-badge]: https://img.shields.io/badge/link-other_packages-lightgrey.svg
 [twitter-profile-badge]: https://img.shields.io/twitter/follow/sebastiaanluca.svg?style=social
 [twitter-share-badge]: https://img.shields.io/twitter/url/http/shields.io.svg?style=social
@@ -354,8 +353,7 @@ Have a project that could use some guidance? Send me an e-mail at [hello@sebasti
 [link-twitter-share]: https://twitter.com/intent/tweet?text=Use%20PHP%27s%20pipe%20operator%20now!%20https%3A%2F%2Fgithub.com%2Fsebastiaanluca%2Fphp-pipe-operator%20via%20%40sebastiaanluca
 [link-contributors]: ../../contributors
 
-[link-portfolio]: https://sebastiaanluca.com
-[link-blog]: https://sebastiaanluca.com/blog
+[link-website]: https://sebastiaanluca.com
 [link-packages]: https://packagist.org/packages/sebastiaanluca
 [link-twitter]: https://twitter.com/sebastiaanluca
 [link-github-profile]: https://github.com/sebastiaanluca
