@@ -6,12 +6,8 @@ namespace SebastiaanLuca\PipeOperator;
 
 class Pipe
 {
-    protected mixed $value;
-
-    public function __construct(mixed $value)
+    public function __construct(protected mixed $value)
     {
-        $this->value = $value;
-
         if (! defined('PIPED_VALUE')) {
             define('PIPED_VALUE', 'PIPED_VALUE-'.uniqid('', true));
         }

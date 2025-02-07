@@ -1,0 +1,12 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "phpdoc_single_line_var_spacing": true,
+        "phpdoc_align": false,
+        "class_attributes_separation": {
+            "elements": {
+                "method": "one"
+            }
+        }
+    }
+}

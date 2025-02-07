@@ -88,7 +88,7 @@ class MethodsTest extends TestCase
         $this->assertSame(
             'prefixed-string',
             take('string')
-                ->pipe(function (string $value) {
+                ->pipe(function (string $value): string {
                     return 'prefixed-'.$value;
                 })
                 ->get()
@@ -147,6 +147,11 @@ class MethodsTest extends TestCase
         );
     }
 
+    public function uppercase(string $value): string
+    {
+        return mb_strtoupper($value);
+    }
+
     /**
      * @test
      */
@@ -174,6 +179,16 @@ class MethodsTest extends TestCase
         );
     }
 
+    private function lowercase(string $value): string
+    {
+        return mb_strtolower($value);
+    }
+
+    private function join(string ...$values): string
+    {
+        return implode('-', $values);
+    }
+
     /**
      * @test
      */
@@ -198,20 +213,5 @@ class MethodsTest extends TestCase
                 ->array_change_key_case(CASE_UPPER)
                 ->get()
         );
-    }
-
-    public function uppercase(string $value): string
-    {
-        return mb_strtoupper($value);
-    }
-
-    private function lowercase(string $value): string
-    {
-        return mb_strtolower($value);
-    }
-
-    private function join(string ...$values): string
-    {
-        return implode('-', $values);
     }
 }
