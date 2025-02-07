@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPrivateMethodRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
@@ -47,4 +48,7 @@ return RectorConfig::configure()
         ClosureToArrowFunctionRector::class,
         FirstClassCallableRector::class,
         NewlineAfterStatementRector::class,
+        RemoveUnusedPrivateMethodRector::class => [
+            __DIR__.'/tests/MethodsTest.php',
+        ],
     ]);

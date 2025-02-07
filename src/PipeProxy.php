@@ -8,14 +8,7 @@ use Closure;
 
 class PipeProxy
 {
-    protected Pipe $item;
-    protected object $object;
-
-    public function __construct(Pipe $item, object $object)
-    {
-        $this->item = $item;
-        $this->object = $object;
-    }
+    public function __construct(protected Pipe $item, protected object $object) {}
 
     public function __call(string $method, array $arguments): Pipe
     {
