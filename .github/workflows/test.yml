@@ -1,24 +1,23 @@
-name: Check code
+name: Run tests
 
 on:
   push:
   pull_request:
 
 jobs:
-
-  check:
-    name: Run checks - PHP ${{ matrix.php }} - ${{ matrix.dependency-version }}
+  test:
+    name: Run tests - PHP ${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        php: [8.1, 8.2]
-        dependency-version: [prefer-lowest, prefer-stable]
-        os: [ubuntu-latest]
+        os: [ ubuntu-latest ]
+        php: [ 8.3, 8.4 ]
+        stability: [ prefer-lowest, prefer-stable ]
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache PHP dependencies
         uses: actions/cache@v3
@@ -45,10 +44,10 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-progress --optimize-autoloader
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
       - name: Lint code
-        run: PHP_CS_FIXER_IGNORE_ENV=true vendor/bin/php-cs-fixer fix --dry-run --diff
+        run: vendor/bin/pint --test
 
       - name: Run tests
         run: vendor/bin/phpunit
